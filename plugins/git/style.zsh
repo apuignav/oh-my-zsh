@@ -23,14 +23,14 @@ zstyle ':omz:plugin:git:prompt' branch '%b'
 # %c - SHA-1 hash.
 zstyle ':omz:plugin:git:prompt' commit 'commit:%c'
 
+# %C - Closest branch/tag to HEAD commit.
+zstyle ':omz:plugin:git:prompt' compass '%C'
+
 # %d - Indicator to notify of deleted files.
 zstyle ':omz:plugin:git:prompt' deleted 'deleted:%d'
 
 # %D - Indicator to notify of dirty files.
 zstyle ':omz:plugin:git:prompt' dirty 'dirty:%D'
-
-# %i - Closest branch/tag to the commit
-zstyle ':omz:plugin:git:prompt' describe '(%i)'
 
 # %m - Indicator to notify of modified files.
 zstyle ':omz:plugin:git:prompt' modified 'modified:%m'
