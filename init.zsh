@@ -51,20 +51,6 @@ autoload -Uz zargs
 autoload -Uz zcalc
 autoload -Uz zmv
 
-# Source plugins defined in ~/.zshrc.
-for plugin in "$plugins[@]"; do
-  zstyle ":omz:plugin:$plugin" enable 'yes'
-
-  if [[ ! -d "${0:h}/plugins/$plugin" ]]; then
-    print "omz: no such plugin: $plugin" >&2
-  fi
-
-  if [[ -f "${0:h}/plugins/$plugin/init.zsh" ]]; then
-    source "${0:h}/plugins/$plugin/init.zsh"
-  fi
-done
-unset plugin plugins
-
 # Autoload Oh My Zsh functions.
 for fdir in "$fpath[@]"; do
   if [[ "$fdir" == ${0:h}/(|*/)functions ]]; then
@@ -74,6 +60,12 @@ for fdir in "$fpath[@]"; do
   fi
 done
 unset fdir func
+
+# Source plugins defined in ~/.zshrc.
+for plugin in "$plugins[@]"; do
+  omz-import "$plugin"
+done
+unset plugin plugins
 
 # Set environment variables for launchd processes.
 if [[ "$OSTYPE" == darwin* ]]; then

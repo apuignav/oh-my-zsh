@@ -1,0 +1,27 @@
+#
+# Loads Oh My Zsh plugins.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+local plugin
+for plugin in $argv; do
+  if zstyle -t ":omz:plugin:$plugin"; then
+    return 0
+  fi
+
+  if [[ ! -d "${0:h}/plugins/$plugin" ]]; then
+    print "omz: no such plugin: $plugin" >&2
+    return 1
+  fi
+
+  if [[ -f "${0:h}/plugins/$plugin/init.zsh" ]]; then
+    source "${0:h}/plugins/$plugin/init.zsh"
+  fi
+
+  if (( $? == 0 )); then
+    zstyle ":omz:plugin:$plugin" enable 'yes'
+  fi
+done
+
