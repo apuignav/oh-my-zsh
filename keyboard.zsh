@@ -136,9 +136,6 @@ bindkey -M emacs "$keyinfo[Control]X$keyinfo[Control]B" vi-find-prev-char
 # Match bracket.
 bindkey -M emacs "$keyinfo[Control]X$keyinfo[Control]]" vi-match-bracket
 
-# Edit command in an external editor.
-bindkey -M emacs "$keyinfo[Control]X$keyinfo[Control]E" edit-command-line
-
 # Bind to the history substring search plugin if enabled;
 # otherwise, bind to built-in Zsh history search.
 if (( $+plugins[(er)history-substring-search] )); then
@@ -237,6 +234,9 @@ for keymap in 'emacs' 'viins'; do
   # Display an indicator when completing.
   bindkey -M "$keymap" "$keyinfo[Control]I" \
     expand-or-complete-with-indicator
+
+  # Edit command in an external editor.
+  bindkey -M "$keymap" "$keyinfo[Control]X$keyinfo[Control]E" edit-command-line
 
   # Insert 'sudo ' at the beginning of the line.
   bindkey -M "$keymap" "$keyinfo[Control]X$keyinfo[Control]S" prepend-sudo
