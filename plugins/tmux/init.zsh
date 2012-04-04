@@ -5,23 +5,13 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #   Colin Hebert <hebert.colin@gmail.com>
 #
-# Usage:
-#   To auto start it, add the following to zshrc:
-#
-#     # Auto launch tmux at start-up.
-#     zstyle -t ':omz:plugin:tmux:auto' start 'yes'
-#
-# Warning:
-#   Tmux is known to cause kernel panics on Mac OS X.
-#   For more information, see http://git.io/jkPqHg.
-#
 
 # Aliases
 alias ta="tmux attach-session"
 alias tl="tmux list-sessions"
 
 # Auto Start
-if [[ -z "$TMUX" ]] && zstyle -t ':omz:plugin:tmux:auto' start; then
+if [[ -z "$TMUX" ]] && zstyle -t ':omz:plugin:tmux' auto-start; then
   tmux_session='#OMZ'
 
   if ! tmux has-session -t "$tmux_session" 2> /dev/null; then

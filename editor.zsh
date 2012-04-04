@@ -139,35 +139,17 @@ bindkey -M emacs "$keyinfo[Control]X$keyinfo[Control]]" vi-match-bracket
 # Edit command in an external editor.
 bindkey -M emacs "$keyinfo[Control]X$keyinfo[Control]E" edit-command-line
 
-# Bind to the history substring search plugin if enabled;
-# otherwise, bind to built-in Zsh history search.
-if (( $+plugins[(er)history-substring-search] )); then
-  bindkey -M emacs "$keyinfo[Control]P" history-substring-search-up
-  bindkey -M emacs "$keyinfo[Control]N" history-substring-search-down
-else
-  bindkey -M emacs "$keyinfo[Control]P" up-line-or-history
-  bindkey -M emacs "$keyinfo[Control]N" down-line-or-history
-fi
-
 if (( $+widgets[history-incremental-pattern-search-backward] )); then
   bindkey -M emacs "$keyinfo[Control]R" \
     history-incremental-pattern-search-backward
   bindkey -M emacs "$keyinfo[Control]S" \
     history-incremental-pattern-search-forward
-else
-  bindkey -M emacs "$keyinfo[Control]R" \
-    history-incremental-search-backward
-  bindkey -M emacs "$keyinfo[Control]S" \
-    history-incremental-search-forward
 fi
 
 # Vi key bindings.
 
 # Edit command in an external editor.
 bindkey -M vicmd "v" edit-command-line
-
-# Show cursor position.
-bindkey -M vicmd "ga" what-cursor-position
 
 # Undo/Redo
 bindkey -M vicmd "u" undo
@@ -176,20 +158,6 @@ bindkey -M vicmd "$keyinfo[Control]R" redo
 # Switch to command mode.
 bindkey -M viins "jk" vi-cmd-mode
 bindkey -M viins "kj" vi-cmd-mode
-
-# History
-bindkey -M vicmd "gg" beginning-of-history
-bindkey -M vicmd "G" end-of-history
-
-# Bind to the history substring search plugin if enabled;
-# otherwise, bind to built-in Zsh history search.
-if (( $+plugins[(er)history-substring-search] )); then
-  bindkey -M vicmd "k" history-substring-search-up
-  bindkey -M vicmd "j" history-substring-search-down
-else
-  bindkey -M vicmd "k" up-line-or-history
-  bindkey -M vicmd "j" down-line-or-history
-fi
 
 if (( $+widgets[history-incremental-pattern-search-backward] )); then
   bindkey -M vicmd "?" history-incremental-pattern-search-backward
@@ -213,14 +181,6 @@ for keymap in 'emacs' 'viins'; do
 
   # Expand history on space.
   bindkey -M "$keymap" ' ' magic-space
-
-  if (( $+plugins[(er)history-substring-search] )); then
-    bindkey -M "$keymap" "$keyinfo[Up]" history-substring-search-up
-    bindkey -M "$keymap" "$keyinfo[Down]" history-substring-search-down
-  else
-    bindkey -M "$keymap" "$keyinfo[Up]" up-line-or-history
-    bindkey -M "$keymap" "$keyinfo[Down]" down-line-or-history
-  fi
 
   # Clear screen.
   bindkey -M "$keymap" "$keyinfo[Control]L" clear-screen

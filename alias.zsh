@@ -14,7 +14,9 @@ if (( $+commands[dircolors] )); then
 
   if zstyle -t ':omz:alias:ls' color; then
     if [[ -f "$HOME/.dir_colors" ]]; then
-      eval $(dircolors "$HOME/.dir_colors")
+      eval "$(dircolors "$HOME/.dir_colors")"
+    else
+      eval "$(dircolors)"
     fi
     alias ls="$aliases[ls] --color=auto"
   else
@@ -44,12 +46,12 @@ alias sl='ls'            # I often screw this up.
 
 # General
 alias _='sudo'
-alias b="$BROWSER"
+alias b='${(z)BROWSER}'
 alias cd='nocorrect cd'
 alias cp='nocorrect cp -i'
 alias df='df -kh'
 alias du='du -kh'
-alias e="$EDITOR"
+alias e='${(z)EDITOR}'
 alias find='noglob find'
 alias fc='noglob fc'
 alias gcc='nocorrect gcc'
@@ -59,7 +61,7 @@ alias locate='noglob locate'
 alias man='nocorrect man'
 alias mkdir='nocorrect mkdir -p'
 alias mv='nocorrect mv -i'
-alias p="$PAGER"
+alias p='${(z)PAGER}'
 alias po='popd'
 alias pu='pushd'
 alias rake='noglob rake'
