@@ -17,6 +17,8 @@ alias gbx='git branch -d'
 alias gbX='git branch -D'
 alias gbm='git branch -m'
 alias gbM='git branch -M'
+alias gbs='git show-branch'
+alias gbS='git show-branch -a'
 
 # Commit (c)
 alias gc='git commit'
@@ -118,7 +120,7 @@ alias gRb='git-hub'
 # Stash (s)
 alias gs='git stash'
 alias gsa='git stash apply'
-alias gsc='git stash clear'
+alias gsc='git-stash-clear-interactive'
 alias gsx='git stash drop'
 alias gsl='git stash list'
 alias gsL='git stash show --patch --stat'
