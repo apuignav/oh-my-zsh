@@ -2,7 +2,7 @@
 # My customized prompt :)
 #
 
-function prompt_thegroff_precmd {
+function prompt_apuignav_precmd {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
 
@@ -11,13 +11,13 @@ function prompt_thegroff_precmd {
   fi
 }
 
-function prompt_thegroff_setup {
+function prompt_apuignav_setup {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
   prompt_opts=(cr percent subst)
 
   autoload -Uz add-zsh-hook
-  add-zsh-hook precmd prompt_thegroff_precmd
+  add-zsh-hook precmd prompt_apuignav_precmd
 
   zstyle ':omz:module:editor' completing '%B%F{red}...%f%b'
   zstyle ':omz:module:editor:keymap:primary' overwrite ' %F{red}♺%f'
@@ -46,5 +46,5 @@ function prompt_thegroff_setup {
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }
 
-prompt_thegroff_setup "$@"
+prompt_apuignav_setup "$@"
 
